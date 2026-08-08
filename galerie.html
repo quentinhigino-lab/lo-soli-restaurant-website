@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie · Lo Soli · Perros-Guirec</title>
+  <meta name="description" content="Galerie photos de Lo Soli — la salle, la terrasse, les assiettes et la mer.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lo Soli">
+  <meta property="og:title" content="Galerie · Lo Soli · Perros-Guirec">
+  <meta property="og:description" content="Galerie photos de Lo Soli — la salle, la terrasse, les assiettes et la mer.">
+  <meta property="og:image" content="https://lo-soli.fr/assets/salle-vue-mer.jpg">
+  <meta property="og:url" content="https://lo-soli.fr/galerie.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500;600;700&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="galerie">
+
+  <header class="site-header">
+    <a href="index.html" class="site-logo" data-nav>
+      <span class="logo-name">Lo Soli</span>
+      <span class="logo-sub">Perros-Guirec</span>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="index.html"       class="nav-link" data-nav data-page="accueil" data-i18n="nav_accueil">Accueil</a>
+      <a href="carte.html"       class="nav-link" data-nav data-page="carte"   data-i18n="nav_carte">La Carte</a>
+      <a href="restaurant.html"  class="nav-link" data-nav data-page="resto"   data-i18n="nav_resto">Le Restaurant</a>
+      <a href="galerie.html"     class="nav-link" data-nav data-page="galerie" data-i18n="nav_galerie">Galerie</a>
+      <a href="contact.html"     class="nav-link" data-nav data-page="contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-fr">FR</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="btn-en">EN</button>
+      </div>
+      <a href="tel:+33296911469" class="btn-reserve">
+        <span data-i18n="reserve">Réserver</span>
+        <span class="phone">02 96 91 14 69</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+<div class="page-wrap">
+  <main>
+
+    <!-- HEADER SECTION -->
+    <section style="max-width:1180px;margin:0 auto;padding:76px 40px 40px;text-align:center">
+      <p class="kicker" data-reveal data-i18n="gal_k">Galerie</p>
+      <h1 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(34px,5vw,58px);margin:0 0 14px" data-reveal data-delay="1" data-i18n="gal_t">En images</h1>
+      <p style="font-size:16.5px;color:#5a5548;margin:0 auto;max-width:560px" data-reveal data-delay="2" data-i18n="gal_p">La salle, la terrasse, les assiettes et la mer — un aperçu de l'atmosphère du Soli.</p>
+    </section>
+
+    <!-- GALLERY GRID -->
+    <section style="max-width:1180px;margin:0 auto;padding:20px 40px 60px">
+      <div id="gallery-grid" class="gallery-grid"><!-- built by JS --></div>
+    </section>
+
+    <!-- INSTAGRAM CTA -->
+    <section style="background:#23282b;color:#f6f0e6;text-align:center">
+      <div style="max-width:640px;margin:0 auto;padding:70px 40px">
+        <p class="kicker kicker-light" data-reveal data-i18n="insta_k">@restaurant_lo_soli_22</p>
+        <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:32px;margin:0 0 16px" data-reveal data-delay="1" data-i18n="insta_t">Suivez la vie du Soli</h2>
+        <p style="font-size:16px;color:#cfc6b6;margin:0 0 26px" data-reveal data-delay="2" data-i18n="insta_p">Les plats du jour, les couchers de soleil sur Trestraou et l'ambiance en salle.</p>
+        <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" class="btn-primary" data-reveal data-delay="3" data-i18n="insta_cta">Nous suivre sur Instagram</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Lo Soli</div>
+        <p class="footer-tagline" data-i18n="foot_tag">Bistrot de bord de mer, face à la plage de Trestraou.</p>
+      </div>
+      <div>
+        <p class="footer-col-title" data-i18n="address_title">Adresse</p>
+        <p class="footer-addr" data-i18n="addr">17 Boulevard Joseph Le Bihan
+Plage de Trestraou
+22700 Perros-Guirec</p>
+        <a href="tel:+33296911469" class="footer-tel">02 96 91 14 69</a>
+      </div>
+      <div>
+        <p class="footer-col-title" data-i18n="hours_title2">Horaires</p>
+        <p class="footer-hours-text" id="footer-hours"></p>
+      </div>
+      <div>
+        <p class="footer-col-title" data-i18n="foot_follow">Explorer</p>
+        <div class="footer-links">
+          <a href="carte.html"   class="footer-link" data-nav data-i18n="nav_carte">La Carte</a>
+          <a href="contact.html" class="footer-link" data-nav data-i18n="nav_contact">Contact</a>
+          <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" class="footer-link">Instagram @restaurant_lo_soli_22</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Lo Soli · <span data-i18n="rights">Tous droits réservés.</span></p>
+    </div>
+  </footer>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>

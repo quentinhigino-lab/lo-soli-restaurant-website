@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Carte · Lo Soli · Perros-Guirec</title>
+  <meta name="description" content="La carte de Lo Soli : poissons, grillades, pizzas, desserts maison. Bistrot de la plage de Trestraou.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lo Soli">
+  <meta property="og:title" content="La Carte · Lo Soli · Perros-Guirec">
+  <meta property="og:description" content="La carte de Lo Soli : poissons, grillades, pizzas, desserts maison. Bistrot de la plage de Trestraou.">
+  <meta property="og:image" content="https://lo-soli.fr/assets/parillada.jpg">
+  <meta property="og:url" content="https://lo-soli.fr/carte.html">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500;600;700&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="carte">
+
+  <header class="site-header">
+    <a href="index.html" class="site-logo" data-nav>
+      <span class="logo-name">Lo Soli</span>
+      <span class="logo-sub">Perros-Guirec</span>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="index.html"       class="nav-link" data-nav data-page="accueil" data-i18n="nav_accueil">Accueil</a>
+      <a href="carte.html"       class="nav-link" data-nav data-page="carte"   data-i18n="nav_carte">La Carte</a>
+      <a href="restaurant.html"  class="nav-link" data-nav data-page="resto"   data-i18n="nav_resto">Le Restaurant</a>
+      <a href="galerie.html"     class="nav-link" data-nav data-page="galerie" data-i18n="nav_galerie">Galerie</a>
+      <a href="contact.html"     class="nav-link" data-nav data-page="contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-fr">FR</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="btn-en">EN</button>
+      </div>
+      <a href="tel:+33296911469" class="btn-reserve">
+        <span data-i18n="reserve">Réserver</span>
+        <span class="phone">02 96 91 14 69</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+<div class="page-wrap">
+  <main>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <img class="page-hero-img" src="assets/parillada.jpg" alt="Parillada Lo Soli" fetchpriority="high">
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <p class="page-hero-kicker" data-i18n="carte_k">La carte</p>
+        <h1 class="page-hero-title" data-i18n="carte_t">Notre carte</h1>
+      </div>
+    </div>
+
+    <!-- INTRO CARTE -->
+    <section style="max-width:900px;margin:0 auto;padding:64px 40px 30px;text-align:center">
+      <p style="font-size:17px;line-height:1.75;color:#4a463f;margin:0 0 22px" data-reveal data-i18n="carte_p">Une cuisine de brasserie généreuse : poissons et fruits de mer de la criée, viandes maison, pizzas à pâte fine et desserts maison.</p>
+      <div style="display:inline-flex;flex-wrap:wrap;gap:10px;justify-content:center" data-reveal data-delay="1">
+        <span style="background:#efe6d6;border:1px solid rgba(35,40,43,.12);padding:8px 16px;border-radius:999px;font-size:13px;color:#5a5548" data-i18n="formule">Formule petit-déjeuner · 9h–11h · 10 €</span>
+        <span style="background:#efe6d6;border:1px solid rgba(35,40,43,.12);padding:8px 16px;border-radius:999px;font-size:13px;color:#5a5548" data-i18n="carte_note">Plats savoyards en hiver · Homard sur commande la veille</span>
+      </div>
+    </section>
+
+    <!-- MENU SECTIONS -->
+    <section style="max-width:1000px;margin:0 auto;padding:20px 40px 40px">
+      <div id="menu-sections"><!-- built by JS --></div>
+      <p style="text-align:center;font-size:13.5px;color:#8a7f70;font-style:italic;margin:10px 0 0" data-i18n="carte_disclaimer">Carte donnée à titre indicatif.</p>
+    </section>
+
+    <!-- CTA BAND -->
+    <section style="background:#23282b;color:#f6f0e6;text-align:center">
+      <div style="max-width:640px;margin:0 auto;padding:64px 40px">
+        <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:32px;margin:0 0 16px" data-reveal data-i18n="carte_cta_t">Une table vous attend</h2>
+        <a href="tel:+33296911469" class="btn-primary" data-reveal data-delay="1" data-i18n="band_cta">Réserver au 02 96 91 14 69</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Lo Soli</div>
+        <p class="footer-tagline" data-i18n="foot_tag">Bistrot de bord de mer, face à la plage de Trestraou.</p>
+      </div>
+      <div>
+        <p class="footer-col-title" data-i18n="address_title">Adresse</p>
+        <p class="footer-addr" data-i18n="addr">17 Boulevard Joseph Le Bihan
+Plage de Trestraou
+22700 Perros-Guirec</p>
+        <a href="tel:+33296911469" class="footer-tel">02 96 91 14 69</a>
+      </div>
+      <div>
+        <p class="footer-col-title" data-i18n="hours_title2">Horaires</p>
+        <p class="footer-hours-text" id="footer-hours"></p>
+      </div>
+      <div>
+        <p class="footer-col-title" data-i18n="foot_follow">Explorer</p>
+        <div class="footer-links">
+          <a href="index.html"   class="footer-link" data-nav data-i18n="nav_accueil">Accueil</a>
+          <a href="contact.html" class="footer-link" data-nav data-i18n="nav_contact">Contact</a>
+          <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" class="footer-link">Instagram @restaurant_lo_soli_22</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Lo Soli · <span data-i18n="rights">Tous droits réservés.</span></p>
+    </div>
+  </footer>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>

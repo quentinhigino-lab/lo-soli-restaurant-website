@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500;600;700&family=Yellowtail&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f6f0e6;color:#23282b;font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#b5643c;text-decoration:none}
+  a:hover{color:#8f4a29}
+  ::selection{background:#b5643c;color:#f6f0e6}
+  @keyframes soliUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes soliFade{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 40px;background:rgba(246,240,230,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(35,40,43,.1)">
+    <div onClick="{{ goHome }}" style="cursor:pointer;display:flex;flex-direction:column;line-height:.9">
+      <span style="font-family:'Yellowtail',cursive;font-size:34px;color:#23282b">Lo Soli</span>
+      <span style="font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:#8a7f70;margin-top:3px;padding-left:3px">Perros-Guirec</span>
+    </div>
+    <nav style="display:flex;align-items:center;gap:30px">
+      <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+        <button onClick="{{ link.onClick }}" style="background:none;border:none;font-family:'Mulish',sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#23282b;cursor:pointer;padding:6px 0;position:relative">
+          {{ link.label }}
+          <span style="position:absolute;left:0;bottom:0;height:2px;width:100%;background:{{ accent }};transform:scaleX({{ link.bar }});transform-origin:left;transition:transform .32s ease"></span>
+        </button>
+      </sc-for>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.05em">
+        <button onClick="{{ setFr }}" style="background:none;border:none;cursor:pointer;color:#23282b;opacity:{{ frOp }};font:inherit;padding:0">FR</button>
+        <span style="color:#c3b8a6">/</span>
+        <button onClick="{{ setEn }}" style="background:none;border:none;cursor:pointer;color:#23282b;opacity:{{ enOp }};font:inherit;padding:0">EN</button>
+      </div>
+      <a href="tel:+33296911469" style="display:inline-flex;align-items:center;gap:9px;background:{{ accent }};color:#f6f0e6;padding:11px 20px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase">
+        {{ t.reserve }}<span style="opacity:.75;font-weight:500">02 96 91 14 69</span>
+      </a>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+    <!-- ========== ACCUEIL ========== -->
+    <sc-if value="{{ isAccueil }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <section style="position:relative;height:88vh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden">
+        <img src="{{ heroSrc }}" alt="Lo Soli" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,24,26,.34) 0%,rgba(20,24,26,.15) 40%,rgba(20,24,26,.72) 100%)"></div>
+        <div style="position:relative;max-width:1180px;width:100%;margin:0 auto;padding:0 40px 68px;color:#f6f0e6">
+          <p style="font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:#f0e4d0;margin:0 0 14px;animation:soliFade 1s ease both">{{ t.hero_kicker }}</p>
+          <div style="font-family:'Yellowtail',cursive;font-size:clamp(72px,12vw,168px);line-height:.86;text-shadow:0 6px 40px rgba(0,0,0,.4);animation:soliUp .9s ease both">Lo Soli</div>
+          <p style="font-family:'Libre Caslon Text',serif;font-size:clamp(19px,2.3vw,27px);max-width:560px;margin:18px 0 30px;color:#f4ecdd;animation:soliUp 1s ease .12s both">{{ t.hero_tag }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;animation:soliUp 1s ease .22s both">
+            <a href="tel:+33296911469" style="background:{{ accent }};color:#f6f0e6;padding:15px 30px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">{{ t.reserve }}</a>
+            <button onClick="{{ goMenu }}" style="background:rgba(246,240,230,.14);border:1px solid rgba(246,240,230,.55);color:#f6f0e6;padding:15px 30px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Mulish',sans-serif">{{ t.cta_menu }}</button>
+          </div>
+        </div>
+      </section>
+
+      <section style="max-width:1180px;margin:0 auto;padding:96px 40px 40px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+        <div>
+          <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:{{ accent }};margin:0 0 16px;font-weight:700">{{ t.intro_k }}</p>
+          <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.08;margin:0 0 22px;text-wrap:balance">{{ t.intro_t }}</h2>
+          <p style="font-size:16.5px;line-height:1.75;color:#4a463f;margin:0 0 18px">{{ t.intro_p1 }}</p>
+          <p style="font-size:16.5px;line-height:1.75;color:#4a463f;margin:0">{{ t.intro_p2 }}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <img src="assets/interieur.jpg" alt="" style="width:100%;height:340px;object-fit:cover;border-radius:6px;margin-top:34px"/>
+          <img src="assets/vue-exterieur.jpg" alt="" style="width:100%;height:340px;object-fit:cover;border-radius:6px"/>
+        </div>
+      </section>
+
+      <section style="max-width:1180px;margin:0 auto;padding:56px 40px">
+        <div style="display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px">
+          <div>
+            <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:{{ accent }};margin:0 0 12px;font-weight:700">{{ t.tables_k }}</p>
+            <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(28px,3.2vw,42px);margin:0">{{ t.tables_t }}</h2>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          <sc-for list="{{ tables }}" as="c" hint-placeholder-count="3">
+            <div style="border-radius:6px;overflow:hidden;background:#fff">
+              <img src="{{ c.img }}" alt="" style="width:100%;height:320px;object-fit:cover"/>
+              <div style="padding:22px 22px 26px">
+                <h3 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:24px;margin:0 0 8px">{{ c.title }}</h3>
+                <p style="font-size:14.5px;line-height:1.6;color:#5a5548;margin:0">{{ c.text }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="max-width:1180px;margin:0 auto;padding:56px 40px 72px">
+        <div style="text-align:center;margin-bottom:40px">
+          <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:{{ accent }};margin:0 0 12px;font-weight:700">{{ t.sig_k }}</p>
+          <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(28px,3.2vw,42px);margin:0 0 10px">{{ t.sig_t }}</h2>
+          <p style="font-size:16px;color:#5a5548;margin:0">{{ t.sig_p }}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+          <sc-for list="{{ sigDishes }}" as="d" hint-placeholder-count="4">
+            <div style="position:relative;border-radius:6px;overflow:hidden;height:300px">
+              <img src="{{ d.img }}" alt="" style="width:100%;height:100%;object-fit:cover"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(20,24,26,.78) 100%)"></div>
+              <div style="position:absolute;left:0;right:0;bottom:0;padding:18px">
+                <p style="color:#f6f0e6;font-family:'Libre Caslon Text',serif;font-size:18px;margin:0">{{ d.name }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="text-align:center;margin-top:38px">
+          <button onClick="{{ goMenu }}" style="background:none;border:1px solid #23282b;color:#23282b;padding:14px 30px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Mulish',sans-serif">{{ t.sig_cta }}</button>
+        </div>
+      </section>
+
+      <section style="background:#23282b;color:#f6f0e6">
+        <div style="max-width:1180px;margin:0 auto;padding:78px 40px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+          <div>
+            <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#e2b48c;margin:0 0 14px;font-weight:700">{{ t.hours_k }}</p>
+            <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(30px,3.4vw,44px);margin:0 0 26px">{{ t.hours_t }}</h2>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <div style="display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid rgba(246,240,230,.16)">
+                <span style="font-family:'Libre Caslon Text',serif;font-size:19px">{{ t.h_break_t }}</span><span style="color:#cfc6b6;font-size:15px">{{ t.h_break_v }}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid rgba(246,240,230,.16)">
+                <span style="font-family:'Libre Caslon Text',serif;font-size:19px">{{ t.h_lunch_t }}</span><span style="color:#cfc6b6;font-size:15px">{{ t.h_lunch_v }}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid rgba(246,240,230,.16);border-bottom:1px solid rgba(246,240,230,.16)">
+                <span style="font-family:'Libre Caslon Text',serif;font-size:19px">{{ t.h_dinner_t }}</span><span style="color:#cfc6b6;font-size:15px">{{ t.h_dinner_v }}</span>
+              </div>
+            </div>
+            <p style="font-size:14.5px;color:#cfc6b6;margin:22px 0 26px">{{ t.hours_note }}</p>
+            <a href="tel:+33296911469" style="display:inline-flex;align-items:center;gap:10px;background:{{ accent }};color:#f6f0e6;padding:15px 28px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase">{{ t.band_cta }}</a>
+          </div>
+          <img src="assets/salle-vue-mer.jpg" alt="" style="width:100%;height:440px;object-fit:cover;border-radius:6px"/>
+        </div>
+      </section>
+
+      <sc-if value="{{ showInsta }}" hint-placeholder-val="{{ true }}">
+      <section style="max-width:1180px;margin:0 auto;padding:80px 40px">
+        <div style="text-align:center;margin-bottom:34px">
+          <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:{{ accent }};margin:0 0 12px;font-weight:700">{{ t.insta_k }}</p>
+          <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(28px,3.2vw,42px);margin:0 0 10px">{{ t.insta_t }}</h2>
+          <p style="font-size:16px;color:#5a5548;margin:0 auto;max-width:520px">{{ t.insta_p }}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
+          <sc-for list="{{ instaGrid }}" as="img" hint-placeholder-count="6">
+            <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:4px">
+              <img src="{{ img }}" alt="" style="width:100%;height:100%;object-fit:cover"/>
+            </a>
+          </sc-for>
+        </div>
+        <div style="text-align:center;margin-top:34px">
+          <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;color:#23282b;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;border:1px solid #23282b;padding:13px 26px;border-radius:999px">{{ t.insta_cta }}</a>
+        </div>
+      </section>
+      </sc-if>
+    </div>
+    </sc-if>
+
+    <!-- ========== LA CARTE ========== -->
+    <sc-if value="{{ isCarte }}">
+    <div>
+      <section style="position:relative;height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <img src="assets/parillada.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;inset:0;background:rgba(20,24,26,.55)"></div>
+        <div style="position:relative;text-align:center;color:#f6f0e6;padding:0 24px">
+          <p style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;margin:0 0 12px;color:#f0e4d0">{{ t.carte_k }}</p>
+          <h1 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(38px,6vw,68px);margin:0">{{ t.carte_t }}</h1>
+        </div>
+      </section>
+      <section style="max-width:900px;margin:0 auto;padding:64px 40px 30px;text-align:center">
+        <p style="font-size:17px;line-height:1.75;color:#4a463f;margin:0 0 22px">{{ t.carte_p }}</p>
+        <div style="display:inline-flex;flex-wrap:wrap;gap:10px;justify-content:center">
+          <span style="background:#efe6d6;border:1px solid rgba(35,40,43,.12);padding:8px 16px;border-radius:999px;font-size:13px;color:#5a5548">{{ t.formule }}</span>
+          <span style="background:#efe6d6;border:1px solid rgba(35,40,43,.12);padding:8px 16px;border-radius:999px;font-size:13px;color:#5a5548">{{ t.carte_note }}</span>
+        </div>
+      </section>
+      <section style="max-width:1000px;margin:0 auto;padding:20px 40px 40px">
+        <sc-for list="{{ menu }}" as="sec" hint-placeholder-count="5">
+          <div style="margin-bottom:52px">
+            <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:22px">
+              <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:28px;margin:0;white-space:nowrap">{{ sec.title }}</h2>
+              <span style="flex:1;height:1px;background:rgba(35,40,43,.16)"></span>
+              <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a99b85">{{ sec.note }}</span>
+            </div>
+            <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="4">
+              <div style="display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(35,40,43,.14)">
+                <div style="flex:1">
+                  <p style="margin:0;font-size:17px;font-weight:600;color:#23282b">{{ it.name }}<span style="color:{{ accent }};margin-left:8px">{{ it.star }}</span></p>
+                  <p style="margin:4px 0 0;font-size:14px;color:#6a6455;line-height:1.5">{{ it.desc }}</p>
+                </div>
+                <span style="font-family:'Libre Caslon Text',serif;font-size:18px;color:#23282b;white-space:nowrap">{{ it.price }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+        <p style="text-align:center;font-size:13.5px;color:#8a7f70;font-style:italic;margin:10px 0 0">{{ t.carte_disclaimer }}</p>
+      </section>
+      <section style="background:#23282b;color:#f6f0e6;text-align:center">
+        <div style="max-width:640px;margin:0 auto;padding:64px 40px">
+          <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:32px;margin:0 0 16px">{{ t.carte_cta_t }}</h2>
+          <a href="tel:+33296911469" style="display:inline-flex;align-items:center;gap:10px;background:{{ accent }};color:#f6f0e6;padding:15px 30px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase">{{ t.band_cta }}</a>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ========== LE RESTAURANT ========== -->
+    <sc-if value="{{ isResto }}">
+    <div>
+      <section style="position:relative;height:420px;display:flex;align-items:center;overflow:hidden">
+        <img src="assets/salle-brique.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,24,26,.72) 0%,rgba(20,24,26,.25) 100%)"></div>
+        <div style="position:relative;max-width:1180px;width:100%;margin:0 auto;padding:0 40px;color:#f6f0e6">
+          <p style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;margin:0 0 12px;color:#f0e4d0">{{ t.resto_k }}</p>
+          <h1 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(38px,6vw,64px);margin:0;max-width:640px;line-height:1.05">{{ t.resto_t }}</h1>
+        </div>
+      </section>
+      <section style="max-width:820px;margin:0 auto;padding:72px 40px 20px;text-align:center">
+        <p style="font-family:'Libre Caslon Text',serif;font-size:23px;line-height:1.6;color:#3a362f;margin:0">{{ t.resto_lead }}</p>
+      </section>
+      <section style="max-width:1080px;margin:0 auto;padding:40px 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <div>
+          <p style="font-size:16.5px;line-height:1.8;color:#4a463f;margin:0 0 18px">{{ t.resto_p1 }}</p>
+          <p style="font-size:16.5px;line-height:1.8;color:#4a463f;margin:0">{{ t.resto_p2 }}</p>
+        </div>
+        <img src="assets/bar.jpg" alt="" style="width:100%;height:420px;object-fit:cover;border-radius:6px"/>
+      </section>
+      <section style="max-width:1080px;margin:0 auto;padding:20px 40px 60px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <img src="assets/interieur.jpg" alt="" style="width:100%;height:420px;object-fit:cover;border-radius:6px"/>
+        <div>
+          <p style="font-size:16.5px;line-height:1.8;color:#4a463f;margin:0">{{ t.resto_p3 }}</p>
+        </div>
+      </section>
+      <section style="background:#efe6d6">
+        <div style="max-width:1080px;margin:0 auto;padding:70px 40px">
+          <h2 style="text-align:center;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:34px;margin:0 0 44px">{{ t.values_title }}</h2>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:34px">
+            <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+              <div style="text-align:center">
+                <div style="font-family:'Yellowtail',cursive;font-size:38px;color:{{ accent }};margin-bottom:10px">{{ v.n }}</div>
+                <h3 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:23px;margin:0 0 10px">{{ v.title }}</h3>
+                <p style="font-size:15px;line-height:1.65;color:#5a5548;margin:0">{{ v.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ========== GALERIE ========== -->
+    <sc-if value="{{ isGalerie }}">
+    <div>
+      <section style="max-width:1180px;margin:0 auto;padding:76px 40px 40px;text-align:center">
+        <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:{{ accent }};margin:0 0 14px;font-weight:700">{{ t.gal_k }}</p>
+        <h1 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(34px,5vw,58px);margin:0 0 14px">{{ t.gal_t }}</h1>
+        <p style="font-size:16.5px;color:#5a5548;margin:0 auto;max-width:560px">{{ t.gal_p }}</p>
+      </section>
+      <section style="max-width:1180px;margin:0 auto;padding:20px 40px 60px">
+        <div style="columns:3;column-gap:16px">
+          <sc-for list="{{ gallery }}" as="img" hint-placeholder-count="12">
+            <img src="{{ img }}" alt="" style="width:100%;margin:0 0 16px;border-radius:6px;display:block;break-inside:avoid"/>
+          </sc-for>
+        </div>
+      </section>
+      <sc-if value="{{ showInsta }}" hint-placeholder-val="{{ true }}">
+      <section style="background:#23282b;color:#f6f0e6;text-align:center">
+        <div style="max-width:640px;margin:0 auto;padding:70px 40px">
+          <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#e2b48c;margin:0 0 12px;font-weight:700">{{ t.insta_k }}</p>
+          <h2 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:32px;margin:0 0 16px">{{ t.insta_t }}</h2>
+          <p style="font-size:16px;color:#cfc6b6;margin:0 0 26px">{{ t.insta_p }}</p>
+          <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:{{ accent }};color:#f6f0e6;padding:14px 28px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase">{{ t.insta_cta }}</a>
+        </div>
+      </section>
+      </sc-if>
+    </div>
+    </sc-if>
+
+    <!-- ========== CONTACT ========== -->
+    <sc-if value="{{ isContact }}">
+    <div>
+      <section style="max-width:1180px;margin:0 auto;padding:76px 40px 40px;text-align:center">
+        <p style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:{{ accent }};margin:0 0 14px;font-weight:700">{{ t.contact_k }}</p>
+        <h1 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(34px,5vw,58px);margin:0 0 14px">{{ t.contact_t }}</h1>
+        <p style="font-size:16.5px;color:#5a5548;margin:0 auto;max-width:560px">{{ t.contact_lead }}</p>
+      </section>
+      <section style="max-width:1180px;margin:0 auto;padding:20px 40px 30px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:stretch">
+        <div style="background:#23282b;color:#f6f0e6;border-radius:8px;padding:44px;display:flex;flex-direction:column;justify-content:center">
+          <p style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#e2b48c;margin:0 0 10px;font-weight:700">{{ t.reserve_title }}</p>
+          <p style="font-size:16px;line-height:1.7;color:#cfc6b6;margin:0 0 22px">{{ t.reserve_p }}</p>
+          <a href="tel:+33296911469" style="font-family:'Libre Caslon Display',serif;font-size:38px;color:#f6f0e6">02 96 91 14 69</a>
+          <a href="tel:+33296911469" style="align-self:flex-start;margin-top:24px;background:{{ accent }};color:#f6f0e6;padding:15px 30px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase">{{ t.call_now }}</a>
+        </div>
+        <div style="border:1px solid rgba(35,40,43,.14);border-radius:8px;padding:44px;background:#fff">
+          <div style="margin-bottom:26px">
+            <h3 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:22px;margin:0 0 8px">{{ t.address_title }}</h3>
+            <p style="font-size:15.5px;line-height:1.65;color:#4a463f;margin:0;white-space:pre-line">{{ t.addr }}</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Lo+Soli+Perros-Guirec" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">{{ t.getdirections }}</a>
+          </div>
+          <div>
+            <h3 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:22px;margin:0 0 12px">{{ t.hours_title2 }}</h3>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(35,40,43,.1);font-size:14.5px"><span>{{ t.h_break_t }}</span><span style="color:#6a6455">{{ t.h_break_v }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(35,40,43,.1);font-size:14.5px"><span>{{ t.h_lunch_t }}</span><span style="color:#6a6455">{{ t.h_lunch_v }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(35,40,43,.1);font-size:14.5px"><span>{{ t.h_dinner_t }}</span><span style="color:#6a6455">{{ t.h_dinner_v }}</span></div>
+          </div>
+        </div>
+      </section>
+      <section style="max-width:1180px;margin:0 auto;padding:20px 40px 30px">
+        <iframe title="Plan Lo Soli" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.4635%2C48.8135%2C-3.4445%2C48.8232&amp;layer=mapnik&amp;marker=48.8183%2C-3.4535" style="width:100%;height:360px;border:0;border-radius:8px;filter:saturate(.92)"></iframe>
+      </section>
+      <section style="max-width:1180px;margin:0 auto;padding:30px 40px 70px;display:grid;grid-template-columns:1fr 1fr;gap:44px">
+        <div>
+          <h3 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:24px;margin:0 0 18px">{{ t.services_title }}</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <sc-for list="{{ services }}" as="s" hint-placeholder-count="9">
+              <span style="background:#efe6d6;border:1px solid rgba(35,40,43,.1);padding:8px 15px;border-radius:999px;font-size:13.5px;color:#4a463f">{{ s }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family:'Libre Caslon Display',serif;font-weight:400;font-size:24px;margin:0 0 18px">{{ t.nearby_title }}</h3>
+          <p style="font-size:15.5px;line-height:1.75;color:#4a463f;margin:0">{{ t.nearby_text }}</p>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+  </main>
+
+  <footer style="background:#1b1f21;color:#cfc6b6">
+    <div style="max-width:1180px;margin:0 auto;padding:64px 40px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px">
+      <div>
+        <div style="font-family:'Yellowtail',cursive;font-size:40px;color:#f6f0e6;line-height:.9">Lo Soli</div>
+        <p style="font-size:14px;line-height:1.6;margin:16px 0 0;max-width:250px">{{ t.foot_tag }}</p>
+      </div>
+      <div>
+        <p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a8069;margin:0 0 14px">{{ t.address_title }}</p>
+        <p style="font-size:14px;line-height:1.7;margin:0;white-space:pre-line">{{ t.addr }}</p>
+        <a href="tel:+33296911469" style="display:inline-block;margin-top:10px;color:#f0e4d0;font-size:14px">02 96 91 14 69</a>
+      </div>
+      <div>
+        <p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a8069;margin:0 0 14px">{{ t.hours_title2 }}</p>
+        <p style="font-size:13.5px;line-height:1.9;margin:0">{{ t.h_break_t }} · {{ t.h_break_v }}<br/>{{ t.h_lunch_t }} · {{ t.h_lunch_v }}<br/>{{ t.h_dinner_t }} · {{ t.h_dinner_v }}</p>
+      </div>
+      <div>
+        <p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a8069;margin:0 0 14px">{{ t.foot_follow }}</p>
+        <div style="display:flex;flex-direction:column;gap:9px;align-items:flex-start">
+          <button onClick="{{ goMenu }}" style="background:none;border:none;color:#cfc6b6;cursor:pointer;font:inherit;font-size:14px;padding:0">{{ t.nav_carte }}</button>
+          <button onClick="{{ goContact }}" style="background:none;border:none;color:#cfc6b6;cursor:pointer;font:inherit;font-size:14px;padding:0">{{ t.nav_contact }}</button>
+          <a href="https://www.instagram.com/restaurant_lo_soli_22/" target="_blank" rel="noopener" style="color:#cfc6b6;font-size:14px">Instagram @restaurant_lo_soli_22</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(246,240,230,.12)">
+      <div style="max-width:1180px;margin:0 auto;padding:20px 40px;font-size:12.5px;color:#8a8069">© 2025 Lo Soli · {{ t.rights }}</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#b5643c&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#b5643c&quot;,&quot;#2f7d8a&quot;,&quot;#b8873a&quot;],&quot;section&quot;:&quot;Apparence&quot;},&quot;heroImage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;terrasse&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;terrasse&quot;,&quot;salle-bar&quot;,&quot;salle-vue-mer&quot;,&quot;vue-exterieur&quot;],&quot;section&quot;:&quot;Apparence&quot;},&quot;showInstagram&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'accueil', lang: 'fr' };
+
+  go(page){
+    this.setState({ page });
+    try { window.scrollTo({ top:0, left:0 }); } catch(e){}
+  }
+
+  MENU = [
+    { tFr:'Entrées', tEn:'Starters', nFr:'', nEn:'', items:[
+      { name:'Planche mixte Lo Soli', fr:'Charcuteries, fromages affinés, cornichons et pain grillé.', en:'Cured meats, aged cheeses, pickles and toasted bread.', p:16 },
+      { name:'Salade Lo Soli', fr:'Jambon cru, chèvre chaud, œuf, tomates, mesclun.', en:'Cured ham, warm goat cheese, egg, tomatoes, mixed leaves.', p:15 },
+      { name:'Tataki de thon', fr:'Thon mi-cuit, sésame, endives et vinaigrette soja.', en:'Seared tuna, sesame, endives and soy dressing.', p:16 },
+      { name:'Soupe de poissons maison', fr:'Rouille, croûtons et fromage râpé.', en:'Home-made fish soup, rouille and croutons.', p:11 },
+    ]},
+    { tFr:'De la mer', tEn:'From the sea', nFr:'Poissons & fruits de mer', nEn:'Fish & seafood', items:[
+      { name:'Parillada de poissons', fr:'Notre signature : poissons grillés, gambas et moules.', en:'Our signature: grilled fish, king prawns and mussels.', p:27, star:true },
+      { name:'Bouillabaisse maison', fr:'La tradition, servie avec sa rouille.', en:'The tradition, served with its rouille.', p:26 },
+      { name:'Saint-Jacques sauce armoricaine', fr:'Noix de Saint-Jacques poêlées.', en:'Pan-seared scallops, armoricaine sauce.', p:24 },
+      { name:'Moules-frites', fr:'Marinière ou à la crème, frites maison.', en:'Marinière or cream, home-made fries.', p:17 },
+      { name:'Homard grillé', fr:'Sur commande la veille.', en:'To order, one day ahead.', market:true },
+    ]},
+    { tFr:'Les grillades', tEn:'From the grill', nFr:'Viandes maison', nEn:'House meats', items:[
+      { name:'Entrecôte maison', fr:'Beurre maître d’hôtel, frites maison.', en:'Maître d’hôtel butter, home-made fries.', p:24, star:true },
+      { name:'Souris d’agneau confite', fr:'Jus au thym, écrasé de pommes de terre.', en:'Thyme jus, crushed potatoes.', p:22 },
+      { name:'Burger Lo Soli', fr:'Bœuf, cheddar, oignons confits, frites maison.', en:'Beef, cheddar, onion confit, home-made fries.', p:17 },
+      { name:'Wok bœuf ou poulet', fr:'Légumes croquants, sauce soja.', en:'Crunchy vegetables, soy sauce.', p:16 },
+    ]},
+    { tFr:'Pizzas & pâtes', tEn:'Pizza & pasta', nFr:'Pâte fine', nEn:'Thin crust', items:[
+      { name:'Pizza raclette', fr:'Pommes de terre, raclette, charcuterie.', en:'Potatoes, raclette cheese, cured meats.', p:15 },
+      { name:'Pizza Saint-Jacques & fruits de mer', fr:'Fruits de mer, Saint-Jacques, crème.', en:'Seafood, scallops, cream.', p:17 },
+      { name:'Pizza Reine', fr:'Jambon, champignons, mozzarella.', en:'Ham, mushrooms, mozzarella.', p:13 },
+      { name:'Pâtes fraîches aux gambas', fr:'Gambas, tomates, basilic.', en:'King prawns, tomato, basil.', p:18 },
+    ]},
+    { tFr:'Desserts', tEn:'Desserts', nFr:'Maison', nEn:'Home-made', items:[
+      { name:'Kouign-amann', fr:'Tiède, glace pomme.', en:'Warm, apple ice cream.', p:9 },
+      { name:'Crêpe caramel beurre salé', fr:'Ou chocolat maison.', en:'Or home-made chocolate.', p:7 },
+      { name:'Café / thé gourmand', fr:'Assortiment de mignardises.', en:'Selection of sweet treats.', p:8 },
+      { name:'Dessert du jour', fr:'Selon l’inspiration.', en:'Chef’s daily inspiration.', p:7 },
+    ]},
+  ];
+
+  FR(){ return {
+    reserve:'Réserver', nav_accueil:'Accueil', nav_carte:'La Carte', nav_resto:'Le Restaurant', nav_galerie:'Galerie', nav_contact:'Contact',
+    hero_kicker:'Bistrot de bord de mer · Perros-Guirec', hero_tag:'Les pieds dans le sable, face à la plage de Trestraou.', cta_menu:'Découvrir la carte',
+    intro_k:'Bienvenue', intro_t:'Un bistrot chaleureux, les yeux dans la mer',
+    intro_p1:'Installé en front de mer sur la plage de Trestraou, Lo Soli mêle la générosité d’une brasserie et la douceur d’un déjeuner face à l’eau. Bois chaud, banquettes confortables et vieilles photos de Perros-Guirec : on s’y sent bien, du café du matin au dernier verre du soir.',
+    intro_p2:'Produits frais, poissons de la criée, viandes maison et pizzas à pâte fine — une cuisine simple et sincère qui suit les saisons.',
+    tables_k:'Nos espaces', tables_t:'Où que vous vous installiez, la mer est là',
+    sig_k:'À la carte', sig_t:'Les incontournables', sig_p:'Quelques plats qui reviennent à chaque table.', sig_cta:'Voir toute la carte',
+    hours_k:'Horaires & services', hours_t:'Trois rendez-vous chaque jour',
+    h_break_t:'Petit-déjeuner', h_break_v:'9h – 11h', h_lunch_t:'Déjeuner', h_lunch_v:'12h – 14h', h_dinner_t:'Dîner', h_dinner_v:'19h · 21h',
+    hours_note:'Réservation conseillée, par téléphone — surtout en saison.', band_cta:'Réserver au 02 96 91 14 69',
+    insta_k:'@restaurant_lo_soli_22', insta_t:'Suivez la vie du Soli', insta_p:'Les plats du jour, les couchers de soleil sur Trestraou et l’ambiance en salle.', insta_cta:'Nous suivre sur Instagram',
+    carte_k:'La carte', carte_t:'Notre carte',
+    carte_p:'Une cuisine de brasserie généreuse : poissons et fruits de mer de la criée, viandes maison, pizzas à pâte fine et desserts maison. La carte évolue au fil des saisons et des arrivages.',
+    formule:'Formule petit-déjeuner · 9h–11h · 10 €', carte_note:'Plats savoyards en hiver · Homard sur commande la veille',
+    carte_disclaimer:'Carte donnée à titre indicatif. La carte définitive et ses prix seront mis en ligne prochainement.',
+    carte_cta_t:'Une table vous attend', price_market:'Prix du marché',
+    resto_k:'Notre histoire', resto_t:'Du Ker Bleu à Lo Soli',
+    resto_lead:'Une adresse de la plage de Trestraou, réinventée dans un esprit moderne et chaleureux — sans rien perdre de son âme.',
+    resto_p1:'Lo Soli a pris place dans les murs de l’ancien Ker Bleu, une institution du front de mer. Après trois mois de travaux, le lieu a été entièrement repensé pour marier le confort d’un bistrot et la lumière d’une salle ouverte sur l’océan.',
+    resto_p2:'Bois clair, banquettes confortables et vieilles photographies de Perros-Guirec : un clin d’œil au patrimoine local, tandis que de grandes baies vitrées laissent entrer la mer.',
+    resto_p3:'Une partie de l’équipe historique est restée — dont Marion, en salle depuis l’époque du Ker Bleu — aux côtés des nouveaux visages qui font vivre le Soli aujourd’hui.',
+    values_title:'Ce qui compte pour nous',
+    gal_k:'Galerie', gal_t:'En images', gal_p:'La salle, la terrasse, les assiettes et la mer — un aperçu de l’atmosphère du Soli.',
+    contact_k:'Réservation & contact', contact_t:'Venez nous voir', contact_lead:'La réservation se fait par téléphone. Nous vous conseillons de réserver, surtout aux beaux jours.',
+    reserve_title:'Réserver une table', reserve_p:'Appelez-nous, nous trouverons le meilleur moment pour vous accueillir.', call_now:'Appeler maintenant',
+    address_title:'Adresse', addr:'17 Boulevard Joseph Le Bihan\nPlage de Trestraou\n22700 Perros-Guirec', getdirections:'Itinéraire →',
+    hours_title2:'Horaires', services_title:'Services & équipements',
+    nearby_title:'Aux alentours', nearby_text:'À deux pas : la plage de Trestraou, le Sentier des Douaniers (GR34), le Parc des Sculptures Christian Gad et, un peu plus loin, Ploumanac’h et la Côte de Granit Rose.',
+    foot_tag:'Bistrot de bord de mer, face à la plage de Trestraou.', foot_follow:'Explorer', rights:'Tous droits réservés.',
+  }; }
+
+  EN(){ return {
+    reserve:'Book', nav_accueil:'Home', nav_carte:'Menu', nav_resto:'The Restaurant', nav_galerie:'Gallery', nav_contact:'Contact',
+    hero_kicker:'Seaside bistro · Perros-Guirec', hero_tag:'Feet in the sand, facing Trestraou beach.', cta_menu:'Discover the menu',
+    intro_k:'Welcome', intro_t:'A warm bistro, eyes on the sea',
+    intro_p1:'Right on the seafront of Trestraou beach, Lo Soli blends the generosity of a brasserie with the ease of lunch by the water. Warm wood, comfortable banquettes and old photographs of Perros-Guirec: a place to feel good, from the morning coffee to the last glass of the evening.',
+    intro_p2:'Fresh produce, fish from the market, house meats and thin-crust pizzas — simple, honest cooking that follows the seasons.',
+    tables_k:'Our spaces', tables_t:'Wherever you sit, the sea is there',
+    sig_k:'On the menu', sig_t:'The essentials', sig_p:'A few dishes that return to every table.', sig_cta:'See the full menu',
+    hours_k:'Hours & service', hours_t:'Three moments, every day',
+    h_break_t:'Breakfast', h_break_v:'9 – 11am', h_lunch_t:'Lunch', h_lunch_v:'12 – 2pm', h_dinner_t:'Dinner', h_dinner_v:'7 · 9pm',
+    hours_note:'Booking recommended, by phone — especially in season.', band_cta:'Book on +33 2 96 91 14 69',
+    insta_k:'@restaurant_lo_soli_22', insta_t:'Follow life at Lo Soli', insta_p:'The dishes of the day, sunsets over Trestraou and the atmosphere in the dining room.', insta_cta:'Follow us on Instagram',
+    carte_k:'The menu', carte_t:'Our menu',
+    carte_p:'Generous brasserie cooking: fish and seafood from the market, house meats, thin-crust pizzas and home-made desserts. The menu changes with the seasons and the day’s catch.',
+    formule:'Breakfast set · 9–11am · €10', carte_note:'Savoyard dishes in winter · Lobster to order, one day ahead',
+    carte_disclaimer:'Sample menu for reference. The final menu and prices will be published soon.',
+    carte_cta_t:'A table is waiting for you', price_market:'Market price',
+    resto_k:'Our story', resto_t:'From Ker Bleu to Lo Soli',
+    resto_lead:'A Trestraou-beach address, reinvented in a modern, warm spirit — without losing any of its soul.',
+    resto_p1:'Lo Soli took over the walls of the former Ker Bleu, a seafront institution. After three months of work, the space was completely reimagined to marry the comfort of a bistro with the light of a room open to the ocean.',
+    resto_p2:'Light wood, comfortable banquettes and old photographs of Perros-Guirec: a nod to local heritage, while large bay windows let the sea pour in.',
+    resto_p3:'Part of the original team stayed on — including Marion, on the floor since the Ker Bleu days — alongside the new faces who bring Lo Soli to life today.',
+    values_title:'What matters to us',
+    gal_k:'Gallery', gal_t:'In pictures', gal_p:'The room, the terrace, the plates and the sea — a glimpse of the Lo Soli atmosphere.',
+    contact_k:'Booking & contact', contact_t:'Come and see us', contact_lead:'Bookings are taken by phone. We recommend reserving, especially in the sunny months.',
+    reserve_title:'Book a table', reserve_p:'Give us a call and we’ll find the best time to welcome you.', call_now:'Call now',
+    address_title:'Address', addr:'17 Boulevard Joseph Le Bihan\nTrestraou Beach\n22700 Perros-Guirec, France', getdirections:'Directions →',
+    hours_title2:'Hours', services_title:'Services & amenities',
+    nearby_title:'Nearby', nearby_text:'Just steps away: Trestraou beach, the Customs Officers’ Path (GR34), the Christian Gad Sculpture Park and, a little further, Ploumanac’h and the Pink Granite Coast.',
+    foot_tag:'Seaside bistro, facing Trestraou beach.', foot_follow:'Explore', rights:'All rights reserved.',
+  }; }
+
+  renderVals(){
+    const L = this.state.lang, fr = L === 'fr';
+    const t = fr ? this.FR() : this.EN();
+    const accent = this.props.accentColor || '#b5643c';
+    const heroKey = this.props.heroImage || 'terrasse';
+    const showInsta = this.props.showInstagram !== false;
+    const page = this.state.page;
+
+    const navLinks = [
+      { key:'accueil', label:t.nav_accueil }, { key:'carte', label:t.nav_carte },
+      { key:'resto', label:t.nav_resto }, { key:'galerie', label:t.nav_galerie },
+      { key:'contact', label:t.nav_contact },
+    ].map(l => ({ label:l.label, bar: page===l.key ? 1 : 0, onClick: () => this.go(l.key) }));
+
+    const tables = [
+      { img:'assets/terrasse.jpg', title: fr?'La terrasse':'The terrace', text: fr?'Face à la plage, à l’ombre des parasols : la plus belle table de Trestraou aux beaux jours.':'Facing the beach, in the shade of the parasols — the finest table in Trestraou on a sunny day.' },
+      { img:'assets/salle-mezzanine.jpg', title: fr?'La salle':'The dining room', text: fr?'Un intérieur repensé, bois et lumière douce, ouvert sur la mer par de grandes baies vitrées.':'A reimagined interior — wood and soft light, open to the sea through large bay windows.' },
+      { img:'assets/bar.jpg', title: fr?'Le bar':'The bar', text: fr?'Cocktails, vins de Bretagne et du Sud, cidres et cafés — de l’apéritif au digestif.':'Cocktails, wines from Brittany and the South, ciders and coffees — from aperitif to digestif.' },
+    ];
+
+    const sigDishes = [
+      { img:'assets/parillada.jpg', name: fr?'Parillada de poissons':'Fish parillada' },
+      { img:'assets/tataki-thon.jpg', name: fr?'Tataki de thon':'Tuna tataki' },
+      { img:'assets/planche-mixte.jpg', name: fr?'Planche mixte':'Mixed board' },
+      { img:'assets/salade-lo-soli.jpg', name: fr?'Salade Lo Soli':'Lo Soli salad' },
+    ];
+
+    const menu = this.MENU.map(sec => ({
+      title: fr ? sec.tFr : sec.tEn,
+      note: fr ? sec.nFr : sec.nEn,
+      items: sec.items.map(it => ({
+        name: it.name,
+        desc: fr ? it.fr : it.en,
+        price: it.market ? t.price_market : (it.p + ' €'),
+        star: it.star ? '★' : '',
+      })),
+    }));
+
+    const values = [
+      { n:'I', title: fr?'Générosité':'Generosity', text: fr?'Des assiettes copieuses, pensées pour partager et pour repartir rassasié.':'Hearty plates, made to share and to leave you satisfied.' },
+      { n:'II', title: fr?'Fraîcheur':'Freshness', text: fr?'Poissons de la criée et produits de saison, au fil des arrivages.':'Fish from the market and seasonal produce, with the day’s catch.' },
+      { n:'III', title: fr?'Accueil':'Welcome', text: fr?'L’esprit d’un bistrot de bord de mer où l’on aime revenir.':'The spirit of a seaside bistro you love coming back to.' },
+    ];
+
+    const services = fr
+      ? ['Terrasse face à la mer','Bar complet & cocktails','Wi-Fi gratuit','Chaise bébé & menu enfant','Accès PMR','Animaux acceptés','Vente à emporter','Cartes bancaires','Parking gratuit à proximité']
+      : ['Sea-facing terrace','Full bar & cocktails','Free Wi-Fi','High chair & kids’ menu','Wheelchair access','Pets welcome','Takeaway','Card payments','Free parking nearby'];
+
+    const gallery = ['assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','assets/bar.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','assets/salle-mezzanine.jpg','assets/emblem.jpg'];
+    const instaGrid = ['assets/parillada.jpg','assets/terrasse.jpg','assets/tataki-thon.jpg','assets/salade-lo-soli.jpg','assets/planche-mixte.jpg','assets/salle-vue-mer.jpg'];
+
+    return {
+      t, accent, showInsta,
+      heroSrc: 'assets/' + heroKey + '.jpg',
+      frOp: fr ? 1 : 0.4, enOp: fr ? 0.4 : 1,
+      setFr: () => this.setState({ lang:'fr' }), setEn: () => this.setState({ lang:'en' }),
+      goHome: () => this.go('accueil'), goMenu: () => this.go('carte'), goContact: () => this.go('contact'),
+      isAccueil: page==='accueil', isCarte: page==='carte', isResto: page==='resto', isGalerie: page==='galerie', isContact: page==='contact',
+      navLinks, tables, sigDishes, menu, values, services, gallery, instaGrid,
+    };
+  }
+}
+</script>
+</body>
+</html>
