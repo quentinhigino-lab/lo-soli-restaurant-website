@@ -24,7 +24,7 @@
       { name: 'Les 12', fr: '', en: '12 oysters.', p: 23.00 },
     ]},
     { tFr: 'Les grandes salades', tEn: 'Large salads', nFr: '', nEn: '', items: [
-      { name: 'La Trigaz', fr: 'Salade, tataki de thon, saumon fumé, Saint-Jacques, tomate, toast.', en: 'Salad, tuna tataki, smoked salmon, scallops, tomato, toast.', p: 24.90 },
+      { name: 'La Triagoz', fr: 'Salade, tataki de thon, saumon fumé, Saint-Jacques, tomate, toast.', en: 'Salad, tuna tataki, smoked salmon, scallops, tomato, toast.', p: 24.90 },
       { name: "L'italienne", fr: 'Salade, tomate, roquette, burrata, légumes marinés, jambon de pays, porchetta.', en: 'Salad, tomato, rocket, burrata, marinated vegetables, country ham, porchetta.', p: 22.50 },
       { name: 'La salade Lo Soli', fr: 'Salades mélangées, lardons déglacés, tomate, œuf, coppa, pignons de pin, noix, toast aux fromages, vinaigrette noix/framboises.', en: 'Mixed leaves, pan-fried lardons, tomato, egg, coppa, pine nuts, walnuts, cheese toast, walnut and raspberry dressing.', p: 22.00 },
       { name: 'La "façon" César', fr: 'Poulet, croûtons, iceberg, œuf, tomate, parmesan, sauce maison.', en: 'Chicken, croutons, iceberg, egg, tomato, parmesan, house sauce.', p: 19.90 },
@@ -45,7 +45,7 @@
     ]},
     { tFr: 'Suppléments', tEn: 'Extras', nFr: '', nEn: '', items: [
       { name: 'Sauce maison', fr: "Poivre vert, roquefort, béarnaise, beurre maître d'hôtel, compotée d'échalotes.", en: "Green pepper, roquefort, béarnaise, maître d'hôtel butter, shallot compote.", p: 2 },
-      { name: 'Frites ou salade', fr: '', en: '', p: 4 },
+      { name: 'Frites ou salade', fr: '', en: 'Fries or salad.', p: 4 },
     ]},
     { tFr: 'Les woks', tEn: 'Woks', nFr: '', nEn: '', items: [
       { name: 'Wok végétarien', fr: '', en: 'Vegetarian wok.', p: 22.00 },
@@ -82,7 +82,7 @@
       { name: 'Indienne', fr: 'Poulet tandoori, oignons, poivrons, crème fraîche.', en: 'Tandoori chicken, onions, peppers, crème fraîche.', p: 20.50 },
       { name: 'Frutti di mare', fr: 'Fruits de mer, ail, persil.', en: 'Seafood, garlic, parsley.', p: 20.90 },
       { name: 'Végétarienne', fr: 'Légumes grillés, mozzarella.', en: 'Grilled vegetables, mozzarella.', p: 17.00 },
-      { name: 'Supplément garniture', fr: 'Sauf burrata.', en: 'Except burrata.', p: 2 },
+      { name: 'Supplément garniture', fr: 'Sauf burrata.', en: 'Extra topping (except burrata).', p: 2 },
       { name: 'Pizza mixte', fr: '½ pizza au choix + salade de crudités.', en: 'Half pizza of your choice + crudités salad.', p: 16.90 },
     ]},
     { tFr: 'Les pizzas blanches · base crème fraîche', tEn: 'White pizzas · crème fraîche base', nFr: '', nEn: '', items: [
@@ -95,7 +95,7 @@
       { name: 'Plat', fr: 'Pizza bambino, jambon-frites, moules frites ou mini chicken burger.', en: 'Bambino pizza, ham and fries, mussels and fries, or mini chicken burger.' },
       { name: 'Dessert', fr: 'Glace pop-up ou crêpe.', en: 'Ice lolly or crêpe.' },
     ]},
-    { tFr: 'Les desserts', tEn: 'Desserts', nFr: '', nEn: '', items: [
+    { tFr: 'Les desserts maisons', tEn: 'Home-made desserts', nFr: '', nEn: '', items: [
       { name: 'Assortiment 4 fromages', fr: '', en: 'Cheese selection (4 varieties).', p: 11 },
       { name: 'Café gourmand', fr: '', en: 'Coffee with assorted mini desserts.', p: 11 },
       { name: 'Moelleux chocolat', fr: '', en: 'Chocolate fondant.', p: 9 },
@@ -119,7 +119,7 @@
       { name: 'Vodka Wyborowa', fr: '', en: 'Wyborowa vodka.', p: 8 },
       { name: 'Alcool + soda', fr: '', en: 'Spirit and mixer.', p: 10 },
     ]},
-    { tFr: 'Les cocktails', tEn: 'Cocktails', nFr: '25 cl', nEn: '25 cl · 11 €', items: [
+    { tFr: 'Les cocktails', tEn: 'Cocktails', nFr: '25 cl · 11 €', nEn: '25 cl · 11 €', items: [
       { name: 'Sex on the Beach', fr: '', en: '', p: 11 },
       { name: 'Piña Colada', fr: '', en: '', p: 11 },
       { name: 'Mojito', fr: '', en: '', p: 11 },
@@ -165,7 +165,7 @@
       carte_p: "Une carte variée pour que chacun trouve son bonheur, avec des produits frais et le plus local possible. Cuisine maison, produits de saison. N'hésitez pas à nous faire part de vos remarques.",
       formule: 'Formule petit-déjeuner · 9h–11h · 10 €',
       carte_note: 'Cuisine de saison · Pas de moules en hiver',
-      carte_disclaimer: 'Carte donnée à titre indicatif. La carte définitive et ses prix seront mis en ligne prochainement.',
+      carte_disclaimer: '',
       carte_cta_t: 'Une table vous attend', price_market: 'Prix du marché',
       resto_k: 'Notre histoire', resto_t: 'Du Ker Bleu à Lo Soli',
       resto_lead: "Une adresse de la plage de Trestraou, réinventée dans un esprit moderne et chaleureux, sans rien perdre de son âme.",
@@ -233,7 +233,7 @@
       carte_p: "A varied menu for everyone, built around fresh, local produce. Home cooking and seasonal ingredients. No mussels in winter. We welcome your feedback.",
       formule: 'Breakfast set · 9–11am · €10',
       carte_note: 'Seasonal cooking · No mussels in winter',
-      carte_disclaimer: 'Sample menu for reference. The final menu and prices will be published soon.',
+      carte_disclaimer: '',
       carte_cta_t: 'A table is waiting for you', price_market: 'Market price',
       resto_k: 'Our story', resto_t: 'From Ker Bleu to Lo Soli',
       resto_lead: 'A Trestraou-beach address, reinvented in a modern, warm spirit, without losing any of its soul.',
@@ -396,7 +396,7 @@
   function buildGalleryGrid() {
     const el = document.getElementById('gallery-grid');
     if (!el) return;
-    const imgs = ['assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','assets/bar.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','assets/salle-mezzanine.jpg','assets/emblem.jpg'];
+    const imgs = ['assets/coucher-soleil-terrasse.jpg','assets/coucher-soleil-verre.jpg','assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','assets/bar.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','assets/salle-mezzanine.jpg','assets/emblem.jpg'];
     el.innerHTML = imgs.map((src, i) => `
       <div class="gallery-img-wrap" data-reveal data-delay="${(i % 4) + 1}">
         <img class="gallery-img" src="${src}" alt="" loading="lazy">
