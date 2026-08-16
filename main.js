@@ -195,7 +195,7 @@
       ],
       tables: [
         { img: 'assets/terrasse.jpg', title: 'La terrasse', text: "Face à la plage, à l'ombre des parasols : la plus belle table de Trestraou aux beaux jours." },
-        { img: 'assets/salle-mezzanine.jpg', title: 'La salle', text: 'Un intérieur repensé, bois et lumière douce, ouvert sur la mer par de grandes baies vitrées.' },
+        { img: 'public/IMG_4811.jpg', title: 'La salle', text: 'Un intérieur repensé, bois et lumière douce, ouvert sur la mer par de grandes baies vitrées.' },
         { img: 'assets/bar.jpg', title: 'Le bar', text: "Cocktails, vins de Bretagne et du Sud, cidres et cafés, de l'apéritif au digestif." },
       ],
       sigDishes: [
@@ -263,7 +263,7 @@
       ],
       tables: [
         { img: 'assets/terrasse.jpg', title: 'The terrace', text: 'Facing the beach, in the shade of the parasols. The finest table in Trestraou on a sunny day.' },
-        { img: 'assets/salle-mezzanine.jpg', title: 'The dining room', text: 'A reimagined interior: wood and soft light, open to the sea through large bay windows.' },
+        { img: 'public/IMG_4811.jpg', title: 'The dining room', text: 'A reimagined interior: wood and soft light, open to the sea through large bay windows.' },
         { img: 'assets/bar.jpg', title: 'The bar', text: "Cocktails, wines from Brittany and the South, ciders and coffees, from aperitif to digestif." },
       ],
       sigDishes: [
@@ -396,7 +396,7 @@
   function buildGalleryGrid() {
     const el = document.getElementById('gallery-grid');
     if (!el) return;
-    const imgs = ['assets/coucher-soleil-terrasse.jpg','assets/coucher-soleil-verre.jpg','assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','assets/bar.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','assets/salle-mezzanine.jpg','assets/emblem.jpg'];
+    const imgs = ['assets/coucher-soleil-terrasse.jpg','assets/coucher-soleil-verre.jpg','assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','assets/bar.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','public/IMG_4811.jpg','assets/emblem.jpg'];
     el.innerHTML = imgs.map((src, i) => `
       <div class="gallery-img-wrap" data-reveal data-delay="${(i % 4) + 1}">
         <img class="gallery-img" src="${src}" alt="" loading="lazy">
