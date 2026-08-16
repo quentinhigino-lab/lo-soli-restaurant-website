@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/carte",      "dest": "/carte.html" },
+    { "src": "/restaurant", "dest": "/restaurant.html" },
+    { "src": "/galerie",    "dest": "/galerie.html" },
+    { "src": "/contact",    "dest": "/contact.html" },
+    { "src": "/(.*)",       "dest": "/$1" }
+  ]
+}
