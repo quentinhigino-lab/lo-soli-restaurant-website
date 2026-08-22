@@ -412,7 +412,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -64px 0px' });
     document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
   }
 
