@@ -200,7 +200,7 @@
       ],
       sigDishes: [
         { img: 'assets/parillada.jpg', name: 'Parillada de poissons' },
-        { img: 'assets/tataki-thon.jpg', name: 'Tataki de thon' },
+        { img: 'assets/tataki-thon.jpg', name: 'La Triagoz' },
         { img: 'assets/planche-mixte.jpg', name: 'Planche mixte' },
         { img: 'assets/salade-lo-soli.jpg', name: 'Salade Lo Soli' },
       ],
@@ -268,7 +268,7 @@
       ],
       sigDishes: [
         { img: 'assets/parillada.jpg', name: 'Fish parillada' },
-        { img: 'assets/tataki-thon.jpg', name: 'Tuna tataki' },
+        { img: 'assets/tataki-thon.jpg', name: 'La Triagoz' },
         { img: 'assets/planche-mixte.jpg', name: 'Mixed board' },
         { img: 'assets/salade-lo-soli.jpg', name: 'Lo Soli salad' },
       ],
@@ -412,7 +412,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -64px 0px' });
+    }, { threshold: 0.1, rootMargin: window.innerWidth <= 900 ? '0px 0px -20px 0px' : '0px 0px -64px 0px' });
     document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
   }
 

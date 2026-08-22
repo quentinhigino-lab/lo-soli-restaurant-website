@@ -698,6 +698,14 @@ body[data-page="resto"] main { padding-top: 0; }
   /* Gallery */
   .gallery-grid { columns: 2; }
 
+  /* Reveal — mobile : pas de stagger, mouvement réduit */
+  [data-reveal] { transform: translateY(10px); }
+  [data-reveal][data-delay="1"],
+  [data-reveal][data-delay="2"],
+  [data-reveal][data-delay="3"],
+  [data-reveal][data-delay="4"],
+  [data-reveal][data-delay="5"] { transition-delay: 0s; }
+
   /* Insta */
   .insta-grid { grid-template-columns: repeat(3,1fr); }
 
