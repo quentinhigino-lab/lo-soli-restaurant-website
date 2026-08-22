@@ -194,7 +194,7 @@
         { n: 'III', title: 'Accueil', text: "L'esprit d'un bistrot de bord de mer où l'on aime revenir." },
       ],
       tables: [
-        { img: 'assets/terrasse.jpg', title: 'La terrasse', text: "Face à la plage, à l'ombre des parasols : la plus belle table de Trestraou aux beaux jours." },
+        { img: 'public/IMG_4812.jpg', title: 'La terrasse', text: "Face à la plage, à l'ombre des parasols : la plus belle table de Trestraou aux beaux jours." },
         { img: 'public/IMG_4811.jpg', title: 'La salle', text: 'Un intérieur repensé, bois et lumière douce, ouvert sur la mer par de grandes baies vitrées.' },
         { img: 'assets/bar.jpg', title: 'Le bar', text: "Cocktails, vins de Bretagne et du Sud, cidres et cafés, de l'apéritif au digestif." },
       ],
@@ -262,7 +262,7 @@
         { n: 'III', title: 'Welcome', text: 'The spirit of a seaside bistro you love coming back to.' },
       ],
       tables: [
-        { img: 'assets/terrasse.jpg', title: 'The terrace', text: 'Facing the beach, in the shade of the parasols. The finest table in Trestraou on a sunny day.' },
+        { img: 'public/IMG_4812.jpg', title: 'The terrace', text: 'Facing the beach, in the shade of the parasols. The finest table in Trestraou on a sunny day.' },
         { img: 'public/IMG_4811.jpg', title: 'The dining room', text: 'A reimagined interior: wood and soft light, open to the sea through large bay windows.' },
         { img: 'assets/bar.jpg', title: 'The bar', text: "Cocktails, wines from Brittany and the South, ciders and coffees, from aperitif to digestif." },
       ],
