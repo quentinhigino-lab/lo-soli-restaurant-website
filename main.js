@@ -171,7 +171,7 @@
       resto_lead: "Une adresse de la plage de Trestraou, réinventée dans un esprit moderne et chaleureux, sans rien perdre de son âme.",
       resto_p1: "Lo Soli a pris place dans les murs de l'ancien Ker Bleu, une institution du front de mer. Après trois mois de travaux, le lieu a été entièrement repensé pour marier le confort d'un bistrot et la lumière d'une salle ouverte sur l'océan.",
       resto_p2: 'Bois clair, banquettes confortables et vieilles photographies de Perros-Guirec : un clin d\'œil au patrimoine local, tandis que de grandes baies vitrées laissent entrer la mer.',
-      resto_p3: "Une partie de l'équipe historique est restée, dont Marion, en salle depuis l'époque du Ker Bleu, aux côtés des nouveaux visages qui font vivre le Soli aujourd'hui.",
+      resto_p3: "Une partie de l'équipe historique est restée, en salle depuis l'époque du Ker Bleu, aux côtés des nouveaux visages qui font vivre le Soli aujourd'hui.",
       values_title: 'Ce qui compte pour nous',
       gal_k: 'Galerie', gal_t: 'En images',
       gal_p: "La salle, la terrasse, les assiettes et la mer : un aperçu de l'atmosphère du Soli.",
@@ -196,7 +196,7 @@
       tables: [
         { img: 'public/IMG_4812.jpg', title: 'La terrasse', text: "Face à la plage, à l'ombre des parasols : la plus belle table de Trestraou aux beaux jours." },
         { img: 'public/IMG_4811.jpg', title: 'La salle', text: 'Un intérieur repensé, bois et lumière douce, ouvert sur la mer par de grandes baies vitrées.' },
-        { img: 'assets/bar.jpg', title: 'Le bar', text: "Cocktails, vins de Bretagne et du Sud, cidres et cafés, de l'apéritif au digestif." },
+        { img: 'public/IMG_4852.jpg', title: 'Le bar', text: "Cocktails, vins de Bretagne et du Sud, cidres et cafés, de l'apéritif au digestif." },
       ],
       sigDishes: [
         { img: 'assets/parillada.jpg', name: 'Parillada de poissons' },
@@ -239,7 +239,7 @@
       resto_lead: 'A Trestraou-beach address, reinvented in a modern, warm spirit, without losing any of its soul.',
       resto_p1: 'Lo Soli took over the walls of the former Ker Bleu, a seafront institution. After three months of work, the space was completely reimagined to marry the comfort of a bistro with the light of a room open to the ocean.',
       resto_p2: 'Light wood, comfortable banquettes and old photographs of Perros-Guirec: a nod to local heritage, while large bay windows let the sea pour in.',
-      resto_p3: 'Part of the original team stayed on, including Marion on the floor since the Ker Bleu days, alongside the new faces who bring Lo Soli to life today.',
+      resto_p3: 'Part of the original team stayed on, on the floor since the Ker Bleu days, alongside the new faces who bring Lo Soli to life today.',
       values_title: 'What matters to us',
       gal_k: 'Gallery', gal_t: 'In pictures',
       gal_p: 'The room, the terrace, the plates and the sea: a glimpse of the Lo Soli atmosphere.',
@@ -264,7 +264,7 @@
       tables: [
         { img: 'public/IMG_4812.jpg', title: 'The terrace', text: 'Facing the beach, in the shade of the parasols. The finest table in Trestraou on a sunny day.' },
         { img: 'public/IMG_4811.jpg', title: 'The dining room', text: 'A reimagined interior: wood and soft light, open to the sea through large bay windows.' },
-        { img: 'assets/bar.jpg', title: 'The bar', text: "Cocktails, wines from Brittany and the South, ciders and coffees, from aperitif to digestif." },
+        { img: 'public/IMG_4852.jpg', title: 'The bar', text: "Cocktails, wines from Brittany and the South, ciders and coffees, from aperitif to digestif." },
       ],
       sigDishes: [
         { img: 'assets/parillada.jpg', name: 'Fish parillada' },
@@ -321,8 +321,9 @@
   function buildTablesGrid() {
     const el = document.getElementById('tables-grid');
     if (!el) return;
-    el.innerHTML = t('tables').map((c, i) => `
-      <div class="card" data-reveal data-delay="${i + 1}">
+    const revealed = el.classList.contains('is-revealed');
+    el.innerHTML = t('tables').map((c) => `
+      <div class="card">
         <div class="card-img-wrap">
           <img class="card-img" src="${c.img}" alt="${c.title}" loading="lazy">
         </div>
@@ -331,6 +332,8 @@
           <p class="card-text">${c.text}</p>
         </div>
       </div>`).join('');
+    if (revealed) el.classList.add('is-revealed');
+    observeTablesGrid();
   }
 
   function buildSigDishes() {
@@ -396,7 +399,7 @@
   function buildGalleryGrid() {
     const el = document.getElementById('gallery-grid');
     if (!el) return;
-    const imgs = ['assets/coucher-soleil-terrasse.jpg','assets/coucher-soleil-verre.jpg','assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','assets/bar.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','public/IMG_4811.jpg','assets/emblem.jpg'];
+    const imgs = ['assets/coucher-soleil-terrasse.jpg','assets/coucher-soleil-verre.jpg','assets/salle-bar.jpg','assets/terrasse.jpg','assets/parillada.jpg','assets/salle-vue-mer.jpg','assets/tataki-thon.jpg','assets/interieur.jpg','assets/planche-mixte.jpg','assets/salle-brique.jpg','assets/salade-mer.jpg','public/IMG_4852.jpg','assets/salade-lo-soli.jpg','assets/vue-exterieur.jpg','public/IMG_4811.jpg','assets/emblem.jpg'];
     el.innerHTML = imgs.map((src, i) => `
       <div class="gallery-img-wrap" data-reveal data-delay="${(i % 4) + 1}">
         <img class="gallery-img" src="${src}" alt="" loading="lazy">
@@ -404,6 +407,24 @@
   }
 
   /* ─── Scroll reveal ─────────────────────────────────── */
+  let tablesGridObserver;
+
+  function observeTablesGrid() {
+    const grid = document.getElementById('tables-grid');
+    if (!grid || grid.classList.contains('is-revealed')) return;
+
+    tablesGridObserver?.disconnect();
+    tablesGridObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        grid.classList.add('is-revealed');
+        tablesGridObserver.disconnect();
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+
+    tablesGridObserver.observe(grid);
+  }
+
   function initReveal() {
     revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
