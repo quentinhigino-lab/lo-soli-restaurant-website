@@ -8,6 +8,7 @@
     { "src": "/restaurant", "dest": "/restaurant.html" },
     { "src": "/galerie",    "dest": "/galerie.html" },
     { "src": "/contact",    "dest": "/contact.html" },
+    { "src": "/mentions-legales", "dest": "/mentions-legales.html" },
     { "src": "/(.*)",       "dest": "/$1" }
   ]
 }
